@@ -1,0 +1,84 @@
+
+<#
+CreateBladeCut("SlantedBladeCut1", "", TypeOfProcess.GeneralRouting, "E041", "-1", 78.1113, 2);
+-->
+CreateBladeCut("SlantedBladeCut1", "", TypeOfProcess.GeneralRouting, "E041", "-1", 78.1113, 2, -1, -1, -1, 0, true, true, 0, 10);
+--> hinterer Teil ist immer gleich!
+--> und folgendes darüber einfügen:
+SetApproachStrategy(true, true, 0.8);
+SetRetractStrategy(true, true, 0.8, 0);
+CreateSectioningMillingStrategy(3, 150, 0);
+
+
+
+
+
+CreateSlot("", 6.5000, "", TypeOfProcess.GeneralRouting, "E096", "-1", 0);
+CreateSlot("", 6.5000, "", TypeOfProcess.GeneralRouting, "E096", "-1", 0);
+-->
+CreateSlot("", 6.5000, "", TypeOfProcess.GeneralRouting, "E096", "6", 0);
+CreateSlot("", 6.5000, "", TypeOfProcess.GeneralRouting, "E096", "6", 0);
+-> es steht immer -1 da und wird auch immer zur 6
+
+
+
+
+CreateContourPocket("", 12.0000, "", TypeOfProcess.ConcentricalPocket, "E010");
+->
+CreateContourPocket("", 12.0000, "", TypeOfProcess.ConcentricalPocket, "E010");
+-> darüber folgendes einfügen:
+SetApproachStrategy(true, false, 2);
+CreateContourParallelStrategy(true, 0, true, 7, 0, 0);
+
+
+
+CreateRoughFinish("",22.0000,"",TypeOfProcess.GeneralRouting, "E010", "-1", 2);
+CreateRoughFinish("",1.5000,"",TypeOfProcess.GeneralRouting, "E031", "-1", 0);
+->
+CreateRoughFinish("",22.0000,"",TypeOfProcess.GeneralRouting, "E010", "-1", 2);
+CreateRoughFinish("",1.5000,"",TypeOfProcess.GeneralRouting, "E031", "-1", 0);
+-> das drüber einfügen:
+CreateHelicMillingStrategy(9, true, 0);
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+der Dateiname, kann sich folgendermaßen verändern: (in _1 und _2)
+1.1_SeiteL_MA_1.xcs -> 1.1_SeiteL_MA_7.521_1.xcs (ist mm angabe)
+
+
+folgende 5 Zeilen können in xcs enthalten sein:
+SetMacroParam("X", 319.4557);
+SetMacroParam("Y", 195.0173);
+SetMacroParam("Length", 200.0000);
+SetMacroParam("Width", 150.0000);
+SetMacroParam("Angle", 16.2235);
+
+-> diese 5 Zeilen könneen andere Werte enthalten
+
+--> wenn die enthalten sind, soll unter diese folgende Zeile eingefügt werden:
+SetMacroParam("Depth", 7.5210); --> 7.5... wird dabei aus Dateinamen entnommen! 
+(kann unterschiedliche nachkommastellen haben) --> gilt für alle Dokumente!!
+
+
+
+# Fuer Theo:
+unter dem button jeweils check box mit dem namen vom anderen
+wenn haken gesetzt, dann:
+
+wenn als zweitseiten-bearbeitung bei m200 noch der haken für x200 gesetzt,
+dann soll das mit _2 mit der x200 ausgeführt werden
+
+
+
+1. ZIP-Datei in Discord ist Flos Config
+2. ZIP Datei ist Theos Config
+
+
+
+#>

@@ -1,0 +1,79 @@
+﻿SetMachiningParameters("AD", 1, 12, 16973824, false);
+CreateFinishedWorkpieceBox("SeiteL_19.0",1500.0000,500.0000,19.0000);
+CreateRawWorkpiece("SeiteL_19.0",10.0000,10.0000,3.0000,3.0000,0.0000,0.0000);
+SetWorkpieceSetupPosition(10, 3.0000, 0.0, 0.0);
+try {
+	CreateMacro("PYTHA_MA", "PYTHA_MA");
+}
+catch (System.Exception e) {}
+
+
+SelectWorkplane("Top");
+CreatePolyline("", 1057.9125, 200.8066);
+AddArc2PointRadiusToPolyline(1057.9125, 300.8066, 50.0002, true, false);
+AddArc2PointRadiusToPolyline(1057.9125, 200.8066, 50.0000, true, false);
+SetPneumaticHoodPosition(1);
+ResetApproachStrategy();
+ResetRetractStrategy();
+CreateHelicMillingStrategy(9, true, 0);
+CreateRoughFinish("",22.0000,"",TypeOfProcess.GeneralRouting, "E010", "-1", 2);
+ResetPneumaticHood();
+ResetApproachStrategy();
+ResetRetractStrategy();
+
+CreateSegment("CutSegment1", 0.0000, 4.0000, 1500.0000, 4.0000);
+SetApproachStrategy(true, true, 0.8);
+SetRetractStrategy(true, true, 0.8, 0);
+CreateSectioningMillingStrategy(3, 150, 0);
+CreateBladeCut("SlantedBladeCut1", "", TypeOfProcess.GeneralRouting, "E041", "-1", 78.1113, 2, -1, -1, -1, 0, true, true, 0, 10);
+
+
+CreateDrill("VerticalDrilling_1", 75.5000, 463.0000, 12.0000, 5.0000, "", TypeOfProcess.Drilling, "-1", "-1", 0, -1, -1, "P");
+
+CreateDrill("VerticalDrilling_2", 107.5000, 463.0000, 12.0000, 5.0000, "", TypeOfProcess.Drilling, "-1", "-1", 0, -1, -1, "P");
+
+CreateDrill("VerticalDrilling_3", 734.0000, 463.0000, 12.0000, 5.0000, "", TypeOfProcess.Drilling, "-1", "-1", 0, -1, -1, "P");
+
+CreateDrill("VerticalDrilling_4", 766.0000, 463.0000, 12.0000, 5.0000, "", TypeOfProcess.Drilling, "-1", "-1", 0, -1, -1, "P");
+
+CreateDrill("VerticalDrilling_5", 1392.5000, 463.0000, 12.0000, 5.0000, "", TypeOfProcess.Drilling, "-1", "-1", 0, -1, -1, "P");
+
+CreateDrill("VerticalDrilling_6", 1424.5000, 463.0000, 12.0000, 5.0000, "", TypeOfProcess.Drilling, "-1", "-1", 0, -1, -1, "P");
+
+SetPneumaticHoodPosition(1);
+CreateSegment("CutSegment2", 13.0000, 17.5000, 1487.0000, 17.5000);
+CreateSlot("", 6.5000, "", TypeOfProcess.GeneralRouting, "E096", "6", 0);
+CreateSegment("CutSegment3", 13.0000, 14.2000, 1487.0000, 14.2000);
+CreateSlot("", 6.5000, "", TypeOfProcess.GeneralRouting, "E096", "6", 0);
+ResetPneumaticHood();
+ResetApproachStrategy();
+ResetRetractStrategy();
+
+CreatePolyline("", 821.7611, 280.6905);
+AddSegmentToPolyline(635.3611, 280.6905);
+AddSegmentToPolyline(635.3611, 180.1006);
+AddSegmentToPolyline(821.7611, 180.1006);
+AddSegmentToPolyline(821.7611, 280.6905);
+SetPneumaticHoodPosition(1);
+SetApproachStrategy(true, false, 2);
+CreateContourParallelStrategy(true, 0, true, 7, 0, 0);
+CreateContourPocket("", 12.0000, "", TypeOfProcess.ConcentricalPocket, "E010");
+ResetPneumaticHood();
+ResetApproachStrategy();
+ResetRetractStrategy();
+
+CreatePolyline("", 596.5779, 330.2973);
+AddSegmentToPolyline(377.8991, 169.9977);
+SetPneumaticHoodPosition(1);
+ResetApproachStrategy();
+ResetRetractStrategy();
+CreateHelicMillingStrategy(9, true, 0);
+CreateRoughFinish("",1.5000,"",TypeOfProcess.GeneralRouting, "E031", "-1", 0);
+ResetPneumaticHood();
+ResetApproachStrategy();
+ResetRetractStrategy();
+
+try {
+	CreateMacro("PYTHA_PARK_2", "PYTHA_PARK");
+}
+catch (System.Exception e) {}
