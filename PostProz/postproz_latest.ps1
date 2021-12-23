@@ -283,7 +283,8 @@ function Replace-CreateRoughFinish([string]$Filename){
 
 
 
-foreach ($Prog in $input)  {
+$i = 0
+foreach ($Prog in $input_dbg)  {
     if ($count -ge 200) { 
         # Die Kommandozeile darf nicht laenger als 8000 Zeichen werden      
 
@@ -298,14 +299,54 @@ foreach ($Prog in $input)  {
 
     $XCS = $Prog.CamPath
 
-    Initial-Replace -Filename $XCS
-    Replace-CreateBladeCut -Filename $XCS
-    Replace-CreateSlot -Filename $XCS
-    Replace-CreateContourPocket -Filename $XCS
-    Replace-CreateRoughFinish -Filename $XCS
-    Replace-SetMacroParam -Filename $XCS
-    
+    try {
+      Initial-Replace -Filename $XCS
+    }
+    catch {
+      Write-Error "Error in Initial-Replace in run $i"
+      throw $Error
+    }
 
+    try {
+      Replace-CreateBladeCut -Filename $XCS
+    }
+    catch {
+      Write-Error "Error in Replace-CreateBladeCut in run $i"
+      throw $Error
+    }
+
+    try {
+      Replace-CreateSlot -Filename $XCS
+    }
+    catch {
+      Write-Error "Error in Replace-CreateSlot in run $i"
+      throw $Error
+    }
+
+    try {
+      Replace-CreateContourPocket -Filename $XCS
+    }
+    catch {
+      Write-Error "Replace-CreateContourPocket in run $i"
+      throw $Error
+    }
+
+    try {
+      Replace-CreateRoughFinish -Filename $XCS
+    }
+    catch {
+      Write-Error "Error in Replace-CreateRoughFinish in run $i"
+      throw $Error
+    }
+
+    try {
+      Replace-SetMacroParam -Filename $XCS
+    }
+    catch {
+      Write-Error "Error in Replace-SetMacroParam in run $i"
+      throw $Error
+    }
+    
 
     $xcsPath = $Prog.CamPath
     $pgmxPath = $xcsPath -replace '.xcs$', '.pgmx'
@@ -316,7 +357,10 @@ foreach ($Prog in $input)  {
     $inFiles += $xcsPath
     $outFiles += $pgmxPath
     $tmpFiles += $tmpPath
+
+    $i++
 }
+
 
 convert-xcs-to-pgmx
 
