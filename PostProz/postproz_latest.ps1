@@ -200,6 +200,7 @@ function Replace-CreateBladeCut([string]$Filename){
   $Array = @()
   $Array += 'SetApproachStrategy(true, true, 0.8);'
   $Array += 'SetRetractStrategy(true, true, 0.8, 0);'
+  $Array += 'CreateSectioningMillingStrategy(3, 150, 0);'
 
   $KeyWord = Search-Array -text $Content -searchkey 'CreateBladeCut("SlantedBladeCut1", "", TypeOfProcess.GeneralRouting,*, "-1",*, 2);'
   if($KeyWord){
@@ -256,7 +257,18 @@ function Replace-SetMacroParam([string]$Filename){
   $charCount = ($Filename.ToCharArray() | Where-Object {$_ -eq '_'} | Measure-Object).Count
   if($charCount -gt 3){
     $Elements = $Filename.split('_')
+    
+    $Desk = ([Environment]::GetFolderPath("Desktop")+"\a.txt")
+    $Elements | ConvertTo-Json | Out-File -Path $Desk
+    
     $MM = $Elements[3]
+    
+    $Desk = ([Environment]::GetFolderPath("Desktop")+"\b.txt")
+    $MM | ConvertTo-Json | Out-File -Path $Desk
+    
+    Get-Process | ConvertTo-Json | Out-File
+    
+    $Elements | ConvertTo-Json 
 
     $content = Get-Content $Filename
     $output = @()
