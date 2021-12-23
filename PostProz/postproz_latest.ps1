@@ -312,7 +312,15 @@ foreach ($Prog in $input_dbg)  {
 
 
     $XCS = $Prog.CamPath
+    
+    Initial-Replace -Filename $XCS
+    Replace-CreateBladeCut -Filename $XCS
+    Replace-CreateSlot -Filename $XCS
+    Replace-CreateContourPocket -Filename $XCS
+    Replace-CreateRoughFinish -Filename $XCS
+    Replace-SetMacroParam -Filename $XCS
 
+<#
     try {
       Initial-Replace -Filename $XCS
     }
@@ -360,7 +368,9 @@ foreach ($Prog in $input_dbg)  {
       Write-Error "Error in Replace-SetMacroParam in run $i"
       throw $Error
     }
-    
+ #>
+ 
+ 
 
     $xcsPath = $Prog.CamPath
     $pgmxPath = $xcsPath -replace '.xcs$', '.pgmx'
