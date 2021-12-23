@@ -201,7 +201,7 @@ function Replace-CreateBladeCut([string]$Filename){
   $Array = @()
   $Array += 'SetApproachStrategy(true, true, 0.8);'
   $Array += 'SetRetractStrategy(true, true, 0.8, 0);'
-  $KeyWord = Search-Array -text $Content -searchkey 'CreateBladeCut("SlantedBladeCut1", "", TypeOfProcess.GeneralRouting, "E041", "-1",*, 2);'
+  $KeyWord = Search-Array -text $Content -searchkey 'CreateBladeCut("SlantedBladeCut1", "", TypeOfProcess.GeneralRouting,*, "-1",*, 2);'
   Add-StringBefore -insert $Array -keyword $KeyWord -textfile $Filename
   # 78.1113 kann sich ändern
 
