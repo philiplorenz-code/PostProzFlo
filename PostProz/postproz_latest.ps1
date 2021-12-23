@@ -137,7 +137,7 @@ function Initial-Replace([string]$Filename){
     $replacant = [system.String]::Join(",", $splitting)
     $Content = $Content.replace($2replace,$replacant)
 
-    $Content = $Content.replace('SetWorkpieceSetupPosition(0, 0.0000, 0.0, 0.0);','SetWorkpieceSetupPosition(1.5, 1.5000, 0.0, 0.0);')
+    $Content = $Content.replace('SetWorkpieceSetupPosition(0.0000, 0.0000, 0.0, 0.0);','SetWorkpieceSetupPosition(1.5, 1.5000, 0.0, 0.0);')
   }
   elseif ($Filename -like "*FUS*_2*"){
   }
