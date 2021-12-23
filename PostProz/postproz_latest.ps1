@@ -298,7 +298,7 @@ function Replace-CreateRoughFinish([string]$Filename){
 
 
 $i = 0
-foreach ($Prog in $input_dbg)  {
+foreach ($Prog in $input)  {
     if ($count -ge 200) { 
         # Die Kommandozeile darf nicht laenger als 8000 Zeichen werden      
 
