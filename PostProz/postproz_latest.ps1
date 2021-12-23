@@ -86,7 +86,7 @@ function Initial-Replace([string]$Filename){
 
   $Content = Get-Content $Filename
 
-  if ($Filename -like "*MA*_1*"){
+  if ($Filename -like "*MA*_1*" -or $Filename -like "*MA_1*"){
     $Content = $Content.replace('CreateMacro("PYTHA_INIT_1", "PYTHA_INIT");','CreateMacro("PYTHA_MA_1", "PYTHA_MA");')
     #$Content = $Content.replace('CreateRawWorkpiece("SeiteL_19.0",0.0000,0.0000,0.0000,0.0000,0.0000,0.0000);','CreateRawWorkpiece("SeiteL_19.0",10.0000,10.0000,3.0000,3.0000,0.0000,0.0000);')
     
@@ -105,7 +105,7 @@ function Initial-Replace([string]$Filename){
   }
   elseif ($Filename -like "*MA*_2*"){
   }
-  elseif ($Filename -like "*FUF*_1*"){
+  elseif ($Filename -like "*FUF*_1*" -or $Filename -like "*FUF_1*"){
     $Content = $Content.replace('CreateMacro("PYTHA_INIT_1", "PYTHA_INIT");','CreateMacro("PYTHA_FUF_1", "PYTHA_FUF");')
     #$Content = $Content.replace('CreateRawWorkpiece("SeiteL_19.0",0.0000,0.0000,0.0000,0.0000,0.0000,0.0000);','CreateRawWorkpiece("SeiteL_19.0",3.0000,3.0000,3.0000,3.0000,0.0000,0.0000);')
     
@@ -123,7 +123,7 @@ function Initial-Replace([string]$Filename){
   }
   elseif ($Filename -like "*FUF*_2*"){
   }
-  elseif ($Filename -like "*FUS*_1*"){
+  elseif ($Filename -like "*FUS*_1*" -or $Filename -like "*FUS_1*"){
     $Content = $Content.replace('CreateMacro("PYTHA_INIT_1", "PYTHA_INIT");','CreateMacro("PYTHA_FUS_1", "PYTHA_FUS");')
     # $Content = $Content.replace('CreateRawWorkpiece("SeiteL_19.0",0.0000,0.0000,0.0000,0.0000,0.0000,0.0000);','CreateRawWorkpiece("SeiteL_19.0",1.5000, 1.5000, 1.5000, 1.5000,0.0000,0.0000);')
 
@@ -142,7 +142,7 @@ function Initial-Replace([string]$Filename){
   elseif ($Filename -like "*FUS*_2*"){
   }
 
-  elseif ($Filename -like "*KUB*_1*"){
+  elseif ($Filename -like "*KUB*_1*" -or $Filename -like "*KUB_1*"){
     $Content = $Content.replace('CreateMacro("PYTHA_INIT_1", "PYTHA_INIT");','CreateMacro("PYTHA_KUB_1", "PYTHA_KUB");')
     
     # Custom Replace
@@ -165,7 +165,7 @@ function Initial-Replace([string]$Filename){
     # "SeiteL_19.0" -> kann sich ändern
   }
 
-  elseif ($Filename -like "*VW*_1*"){
+  elseif ($Filename -like "*VW*_1*" -or $Filename -like "*VW_1*"){
     $Content = $Content.replace('CreateMacro("PYTHA_INIT_1", "PYTHA_INIT");','CreateMacro("PYTHA_VW_1", "PYTHA_VW");')
     
     $Content = $Content.replace('CreateRawWorkpiece("SeiteL_19.0",0.0000,0.0000,0.0000,0.0000,0.0000,0.0000);','CreateRawWorkpiece("SeiteL_19.0",5.0000,5.0000,5.0000,5.0000,0.0000,0.0000);')
