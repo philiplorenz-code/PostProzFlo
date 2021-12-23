@@ -256,6 +256,7 @@ function Replace-CreateContourPocket([string]$Filename){
 function Replace-SetMacroParam([string]$Filename){
   $charCount = ($Filename.ToCharArray() | Where-Object {$_ -eq '_'} | Measure-Object).Count
   if($charCount -gt 3){
+    $Filename = Split-Path $Filename -leaf
     $Elements = $Filename.split('_')
     
     $Desk = ([Environment]::GetFolderPath("Desktop")+"\a.txt")
