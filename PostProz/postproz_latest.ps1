@@ -207,7 +207,7 @@ function Replace-CreateBladeCut([string]$Filename){
 
   # Replace Line
   $Content = Get-Content $Filename
-  $2replace = Search-Array -text $Content -searchkey 'CreateBladeCut("SlantedBladeCut1", "", TypeOfProcess.GeneralRouting, "E041", "-1",*, 2);'
+  $2replace = Search-Array -text $Content -searchkey 'CreateBladeCut("SlantedBladeCut1", "", TypeOfProcess.GeneralRouting,*, "-1",*, 2);'
   $replacant = ($2replace.Replace(");","")) + ", -1, -1, -1, 0, true, true, 0, 10);"
   #$replacant = 'CreateBladeCut("SlantedBladeCut1", "", TypeOfProcess.GeneralRouting, "E041", "-1", 78.1113, 2, -1, -1, -1, 0, true, true, 0, 10);'
   # 78.1113 kann sich ändern
