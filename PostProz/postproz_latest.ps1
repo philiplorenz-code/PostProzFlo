@@ -27,7 +27,6 @@ function convert-xcs-to-pgmx{
     # Loesche die temporaeren Dateien
     Remove-Item $tmpFiles  
 }
-
 function Search-Array(){
   param(
       [array]$text,
@@ -201,17 +200,24 @@ function Replace-CreateBladeCut([string]$Filename){
   $Array = @()
   $Array += 'SetApproachStrategy(true, true, 0.8);'
   $Array += 'SetRetractStrategy(true, true, 0.8, 0);'
+
   $KeyWord = Search-Array -text $Content -searchkey 'CreateBladeCut("SlantedBladeCut1", "", TypeOfProcess.GeneralRouting,*, "-1",*, 2);'
-  Add-StringBefore -insert $Array -keyword $KeyWord -textfile $Filename
+  if($KeyWord){
+    Add-StringBefore -insert $Array -keyword $KeyWord -textfile $Filename
+  }
+
   # 78.1113 kann sich ändern
 
   # Replace Line
   $Content = Get-Content $Filename
   $2replace = Search-Array -text $Content -searchkey 'CreateBladeCut("SlantedBladeCut1", "", TypeOfProcess.GeneralRouting,*, "-1",*, 2);'
-  $replacant = ($2replace.Replace(");","")) + ", -1, -1, -1, 0, true, true, 0, 10);"
+  if ($2replace){
+    $replacant = ($2replace.Replace(");","")) + ", -1, -1, -1, 0, true, true, 0, 10);"
+    $Content = $Content.Replace($2replace,$replacant)
+  }
   #$replacant = 'CreateBladeCut("SlantedBladeCut1", "", TypeOfProcess.GeneralRouting, "E041", "-1", 78.1113, 2, -1, -1, -1, 0, true, true, 0, 10);'
   # 78.1113 kann sich ändern
-  $Content = $Content.Replace($2replace,$replacant)
+  
   Set-Content -Path $Filename -Value $Content
 }
 
@@ -237,7 +243,10 @@ function Replace-CreateContourPocket([string]$Filename){
   $Array += 'CreateContourParallelStrategy(true, 0, true, 7, 0, 0);'
   
   $KeyWord = Search-Array -text $Content -searchkey 'CreateContourPocket("",*, "", TypeOfProcess.ConcentricalPocket,*);'
-  Add-StringBefore -insert $Array -keyword $KeyWord -textfile $Filename
+
+  If($KeyWord){
+    Add-StringBefore -insert $Array -keyword $KeyWord -textfile $Filename
+  }
 
   #Add-StringBefore -insert $Array -keyword 'CreateContourPocket("", 12.0000, "", TypeOfProcess.ConcentricalPocket, "E010");' -textfile $Filename
   # "E010" und 12.0000 kann anders sein
@@ -265,22 +274,27 @@ function Replace-SetMacroParam([string]$Filename){
 }
 
 function Replace-CreateRoughFinish([string]$Filename){
+  $Content = Get-Content $Filename
   # Add Lines Before
   $Array = @()
   $Array += 'CreateHelicMillingStrategy(9, true, 0);'
 
   $KeyWord = Search-Array -text $Content -searchkey 'CreateRoughFinish("",*,"",TypeOfProcess.GeneralRouting,*, "-1", 2);'
-  Add-StringBefore -insert $Array -keyword $KeyWord -textfile $Filename
+  if ($KeyWord){
+    Add-StringBefore -insert $Array -keyword $KeyWord -textfile $Filename
+  }
+  
 
   $KeyWord = Search-Array -text $Content -searchkey 'CreateRoughFinish("",*,"",TypeOfProcess.GeneralRouting,*, "-1", 0);'
-  Add-StringBefore -insert $Array -keyword $KeyWord -textfile $Filename
+  if ($KeyWord){
+    Add-StringBefore -insert $Array -keyword $KeyWord -textfile $Filename
+  }
 
   #Add-StringBefore -insert $Array -keyword 'CreateRoughFinish("",22.0000,"",TypeOfProcess.GeneralRouting, "E010", "-1", 2);' -textfile $Filename
   #Add-StringBefore -insert $Array -keyword 'CreateRoughFinish("",1.5000,"",TypeOfProcess.GeneralRouting, "E031", "-1", 0);' -textfile $Filename
   # kann sich aendern: 22.0000,E010 und 1.5000,E031
   # hier war im Bsp schon Helic gesetzt -> wird deshalb doppelt geschrieben
 }
-
 
 
 $i = 0
