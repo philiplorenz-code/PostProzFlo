@@ -1,0 +1,17 @@
+﻿SetMachiningParameters("AD", 1, 12, 16973824, false);
+CreateFinishedWorkpieceBox("SeiteL_19.0",600.0000,450.0000,19.0000);
+CreateRawWorkpiece("SeiteL_19.0",0.0000,0.0000,0.0000,0.0000,0.0000,0.0000);
+SetWorkpieceSetupPosition(0.0000, 0.0000, 0.0, 0.0);
+try {
+	CreateMacro("PYTHA_INIT_1", "PYTHA_INIT");
+}
+catch (System.Exception e) {}
+
+
+SelectWorkplane("Top");
+CreateDrill("VerticalDrilling_1", 305.0000, 225.0000, 5.0000, 8.0000, "", TypeOfProcess.Drilling, "-1", "-1", 0, -1, -1, "P");
+
+try {
+	CreateMacro("PYTHA_PARK_2", "PYTHA_PARK");
+}
+catch (System.Exception e) {}

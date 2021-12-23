@@ -1,0 +1,63 @@
+﻿SetMachiningParameters("AD", 1, 12, 16973824, false);
+CreateFinishedWorkpieceBox("SeiteL_19.0",600.0000,450.0000,19.0000);
+CreateRawWorkpiece("SeiteL_19.0",0.0000,0.0000,0.0000,0.0000,0.0000,0.0000);
+SetWorkpieceSetupPosition(0.0000, 0.0000, 0.0, 0.0);
+try {
+	CreateMacro("PYTHA_INIT_1", "PYTHA_INIT");
+}
+catch (System.Exception e) {}
+
+
+SelectWorkplane("Top");
+CreateSegment("CutSegment1", 600.0000, 0.0000, 600.0000, 450.0000);
+CreateBladeCut("SlantedBladeCut1", "", TypeOfProcess.GeneralRouting, "E007", "-1", 117.7585, 2);
+
+
+SetPneumaticHoodPosition(1);
+CreateSegment("CutSegment2", -4.0000, 432.0000, 604.0000, 432.0000);
+CreateSlot("", 7.0000, "", TypeOfProcess.GeneralRouting, "E096", "-1", 0);
+CreateSegment("CutSegment3", -4.0000, 430.0000, 604.0000, 430.0000);
+CreateSlot("", 7.0000, "", TypeOfProcess.GeneralRouting, "E096", "-1", 0);
+CreateSegment("CutSegment4", -4.0000, 428.0000, 604.0000, 428.0000);
+CreateSlot("", 7.0000, "", TypeOfProcess.GeneralRouting, "E096", "-1", 0);
+ResetPneumaticHood();
+ResetApproachStrategy();
+ResetRetractStrategy();
+
+SetMacroParam("X", 360.6117);
+SetMacroParam("Y", 223.1516);
+SetMacroParam("Length", 100.9589);
+SetMacroParam("Width", 68.6386);
+SetMacroParam("Angle", 0.0000);
+try {
+	CreateMacro("Test_2", "Test");
+}
+catch (System.Exception e) {
+	CreateMessage("Macro error!", e.ToString(), false, false);
+}
+
+CreatePolyline("", 202.8212, 209.9182);
+AddSegmentToPolyline(105.2394, 209.9182);
+AddSegmentToPolyline(105.2394, 131.2544);
+AddSegmentToPolyline(202.8212, 131.2544);
+AddSegmentToPolyline(202.8212, 209.9182);
+SetPneumaticHoodPosition(1);
+CreateContourPocket("", 12.0000, "", TypeOfProcess.ConcentricalPocket, "E002");
+ResetPneumaticHood();
+ResetApproachStrategy();
+ResetRetractStrategy();
+
+CreatePolyline("", 92.8510, 386.0635);
+AddSegmentToPolyline(475.1642, 325.3696);
+SetPneumaticHoodPosition(1);
+ResetApproachStrategy();
+ResetRetractStrategy();
+CreateRoughFinish("",2.0000,"",TypeOfProcess.GeneralRouting, "E006", "-1", 0);
+ResetPneumaticHood();
+ResetApproachStrategy();
+ResetRetractStrategy();
+
+try {
+	CreateMacro("PYTHA_PARK_3", "PYTHA_PARK");
+}
+catch (System.Exception e) {}
