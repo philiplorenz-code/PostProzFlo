@@ -256,10 +256,15 @@ function Replace-CreateContourPocket([string]$Filename){
 function Replace-SetMacroParam([string]$Filename){
   $charCount = ($Filename.ToCharArray() | Where-Object {$_ -eq '_'} | Measure-Object).Count
   if($charCount -gt 3){
+
     $Filename = Split-Path $Filename -leaf
     $Elements = $Filename.split('_')
     
     $MM = $Elements[3]
+
+    if($Filename -like "*__*"){
+      $MM = 0
+    }
 
     $content = Get-Content $Filename
     $output = @()
