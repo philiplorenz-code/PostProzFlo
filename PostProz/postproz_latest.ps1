@@ -259,17 +259,7 @@ function Replace-SetMacroParam([string]$Filename){
     $Filename = Split-Path $Filename -leaf
     $Elements = $Filename.split('_')
     
-    $Desk = ([Environment]::GetFolderPath("Desktop")+"\a.txt")
-    $Elements | ConvertTo-Json | Out-File -Path $Desk
-    
     $MM = $Elements[3]
-    
-    $Desk = ([Environment]::GetFolderPath("Desktop")+"\b.txt")
-    $MM | ConvertTo-Json | Out-File -Path $Desk
-    
-    Get-Process | ConvertTo-Json | Out-File
-    
-    $Elements | ConvertTo-Json 
 
     $content = Get-Content $Filename
     $output = @()
