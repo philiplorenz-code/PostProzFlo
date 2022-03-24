@@ -194,10 +194,7 @@ catch (System.Exception e) {}
   }
 
   elseif ($Filename -like "*KUB*_2*"){
-    #$Content = $Content.replace('CreateMacro("PYTHA_INIT_1", "PYTHA_INIT");','CreateMacro("PYTHA_KUB_1", "PYTHA_KUB");')
-    #$Content = $Content.replace('CreateRawWorkpiece("SeiteL_19.0",0.0000,0.0000,0.0000,0.0000,0.0000,0.0000);','CreateRawWorkpiece("SeiteL_19.0",3.0000,3.0000,3.0000,3.0000,0.0000,0.0000);')
-    #$Content = $Content.replace('SetWorkpieceSetupPosition(0, 0.0000, 0.0, 0.0);','SetWorkpieceSetupPosition(3, 3.0000, 0.0, 0.0);')
-    # "SeiteL_19.0" -> kann sich ändern
+    Remove-FirstMacro -FilePath $Filepath
   }
 
   elseif ($Filename -like "*VW*_1*" -or $Filename -like "*VW_1*"){
