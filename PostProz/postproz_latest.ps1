@@ -92,7 +92,31 @@ function Add-StringBefore {
 
 function Initial-Replace([string]$Filename){
 
+function Remove-FirstMacro {
+    param(
+        $FilePath
+    )
+
+    # Replace first Create Macro
+    $Content = Get-Content $FilePath
+    $FirstMacro = ($Content | Select-String "CreateMacro")[0]
+    $Content = $file.Replace($FirstMacro, "")
+    $Content | Set-Content $FilePath
+
+    # Replace Remaining Try Catch
+    $RawContent = Get-Content $FilePath -Raw
+$string = @"
+try {
+
+}
+catch (System.Exception e) {}
+"@
+    $RawContent = $RawContent.Replace($string, "")
+    $RawContent | Set-Content $FilePath
+}
+
   $Content = Get-Content $Filename
+  $Filepath = $Filename
   $Filename = ($Filename.Split("\"))[-1]
   if ($Filename -like "*MA*_1*" -or $Filename -like "*MA_1*"){
     $Content = $Content.replace('CreateMacro("PYTHA_INIT_1", "PYTHA_INIT");','CreateMacro("PYTHA_MA_1", "PYTHA_MA");')
@@ -112,6 +136,7 @@ function Initial-Replace([string]$Filename){
 
   }
   elseif ($Filename -like "*MA*_2*"){
+    Remove-FirstMacro -FilePath $Filepath
   }
   elseif ($Filename -like "*FUF*_1*" -or $Filename -like "*FUF_1*"){
     $Content = $Content.replace('CreateMacro("PYTHA_INIT_1", "PYTHA_INIT");','CreateMacro("PYTHA_FUF_1", "PYTHA_FUF");')
@@ -130,6 +155,7 @@ function Initial-Replace([string]$Filename){
     $Content = $Content.replace('SetWorkpieceSetupPosition(0.0000, 0.0000, 0.0, 0.0);','SetWorkpieceSetupPosition(3.0000, 3.0000, 0.0, 0.0);')
   }
   elseif ($Filename -like "*FUF*_2*"){
+      Remove-FirstMacro -FilePath $Filepath
   }
   elseif ($Filename -like "*FUS*_1*" -or $Filename -like "*FUS_1*"){
     $Content = $Content.replace('CreateMacro("PYTHA_INIT_1", "PYTHA_INIT");','CreateMacro("PYTHA_FUS_1", "PYTHA_FUS");')
@@ -148,6 +174,7 @@ function Initial-Replace([string]$Filename){
     $Content = $Content.replace('SetWorkpieceSetupPosition(0.0000, 0.0000, 0.0, 0.0);','SetWorkpieceSetupPosition(1.5000, 1.5000, 0.0, 0.0);')
   }
   elseif ($Filename -like "*FUS*_2*"){
+      Remove-FirstMacro -FilePath $Filepath
   }
 
   elseif ($Filename -like "*KUB*_1*" -or $Filename -like "*KUB_1*"){
@@ -191,6 +218,7 @@ function Initial-Replace([string]$Filename){
   }
 
   elseif ($Filename -like "*VW*_2*"){
+      Remove-FirstMacro -FilePath $Filepath
   }
 
   else {
