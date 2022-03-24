@@ -7,6 +7,14 @@ Param(
 )
 ############################################################################
 
+Start-Transcript -Path "C:\Users\florian\AppData\Local\PYTHA25.0\temp\transcript.txt"
+
+$input | ConvertTo-Json | Set-Content -Path "C:\Users\florian\AppData\Local\PYTHA25.0\temp\input.txt"
+$SystemPath | ConvertTo-Json | Set-Content -Path "C:\Users\florian\AppData\Local\PYTHA25.0\temp\SystemPath.txt"
+$SystemCommand | ConvertTo-Json | Set-Content -Path "C:\Users\florian\AppData\Local\PYTHA25.0\temp\SystemCommand.txt"
+$SystemProfile | ConvertTo-Json | Set-Content -Path "C:\Users\florian\AppData\Local\PYTHA25.0\temp\SystemProfile.txt"
+
+
 $XConverter = "C:\Program Files (x86)\SCM Group\Maestro\XConverter.exe"
 $Tooling = "C:\Program Files (x86)\SCM Group\Maestro\Tlgx\def.tlgx"
 
@@ -85,7 +93,7 @@ function Add-StringBefore {
 function Initial-Replace([string]$Filename){
 
   $Content = Get-Content $Filename
-
+  $Filename = ($Filename.Split("\"))[-1]
   if ($Filename -like "*MA*_1*" -or $Filename -like "*MA_1*"){
     $Content = $Content.replace('CreateMacro("PYTHA_INIT_1", "PYTHA_INIT");','CreateMacro("PYTHA_MA_1", "PYTHA_MA");')
     #$Content = $Content.replace('CreateRawWorkpiece("SeiteL_19.0",0.0000,0.0000,0.0000,0.0000,0.0000,0.0000);','CreateRawWorkpiece("SeiteL_19.0",10.0000,10.0000,3.0000,3.0000,0.0000,0.0000);')
@@ -397,3 +405,5 @@ foreach ($Prog in $input)  {
 convert-xcs-to-pgmx
 
 Start-Sleep 1
+
+Stop-Transcript
