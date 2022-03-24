@@ -100,7 +100,7 @@ function Remove-FirstMacro {
     # Replace first Create Macro
     $Content = Get-Content $FilePath
     $FirstMacro = ($Content | Select-String "CreateMacro")[0]
-    $Content = $file.Replace($FirstMacro, "")
+    $Content = $Content.Replace($FirstMacro, "")
     $Content | Set-Content $FilePath
 
     # Replace Remaining Try Catch
