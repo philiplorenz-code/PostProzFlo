@@ -97,14 +97,44 @@ function Remove-FirstMacro {
         $FilePath
     )
 
-    # Replace first Create Macro
+
+    "Date:" | Out-File -Append "./temp/log.txt"
+    (Get-Date).ToString() | Out-File -Append "./temp/log.txt"
+
+    "FilePath:" | Out-File -Append "./temp/log.txt"
+    $FilePath | Out-File -Append "./temp/log.txt"
+
+    "" | Out-File -Append "./temp/log.txt"
+
     $Content = Get-Content $FilePath
+    "Initial Content:" | Out-File -Append "./temp/log.txt"
+    $Content | Out-File -Append "./temp/log.txt"
+
+    "" | Out-File -Append "./temp/log.txt"
+
     $FirstMacro = ($Content | Select-String "CreateMacro")[0]
+    #$FirstMacro = $FirstMacro.ToString() -replace '\s',''
+    "FirstMacro:" | Out-File -Append "./temp/log.txt"
+    $FirstMacro | Out-File -Append "./temp/log.txt"
+
+    "" | Out-File -Append "./temp/log.txt"
+
     $Content = $Content.Replace($FirstMacro, "")
+    "New Content After Replacement:" | Out-File -Append "./temp/log.txt"
+    $Content | Out-File -Append "./temp/log.txt"
+
+    "" | Out-File -Append "./temp/log.txt"
+
     $Content | Set-Content $FilePath
 
+
+    $CheckContent = Get-Content $FilePath
+    "New Content After Reimport:" | Out-File -Append "./temp/log.txt"
+    $CheckContent | Out-File -Append "./temp/log.txt"
+
+
     # Replace Remaining Try Catch
-    $RawContent = Get-Content $FilePath -Raw
+<#     $RawContent = Get-Content $FilePath -Raw
 $string = @"
 try {
 
@@ -112,8 +142,10 @@ try {
 catch (System.Exception e) {}
 "@
     $RawContent = $RawContent.Replace($string, "")
-    $RawContent | Set-Content $FilePath
+    $RawContent | Set-Content $FilePath #>
 }
+
+
 
   $Content = Get-Content $Filename
   $Filepath = $Filename
