@@ -125,13 +125,14 @@ function Remove-FirstMacro {
 
     "" | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
 
-    $Content | Set-Content $FilePath
+    # $Content | Set-Content $FilePath
 
 
     $CheckContent = Get-Content $FilePath
     "New Content After Reimport:" | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
     $CheckContent | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
-
+    
+    return $Content
 
     # Replace Remaining Try Catch
 <#     $RawContent = Get-Content $FilePath -Raw
@@ -168,7 +169,7 @@ catch (System.Exception e) {}
 
   }
   elseif ($Filename -like "*MA*_2*"){
-    Remove-FirstMacro -FilePath $Filepath
+    $Content = Remove-FirstMacro -FilePath $Filepath
   }
   elseif ($Filename -like "*FUF*_1*" -or $Filename -like "*FUF_1*"){
     $Content = $Content.replace('CreateMacro("PYTHA_INIT_1", "PYTHA_INIT");','CreateMacro("PYTHA_FUF_1", "PYTHA_FUF");')
@@ -187,7 +188,7 @@ catch (System.Exception e) {}
     $Content = $Content.replace('SetWorkpieceSetupPosition(0.0000, 0.0000, 0.0, 0.0);','SetWorkpieceSetupPosition(3.0000, 3.0000, 0.0, 0.0);')
   }
   elseif ($Filename -like "*FUF*_2*"){
-      Remove-FirstMacro -FilePath $Filepath
+      $Content = Remove-FirstMacro -FilePath $Filepath
   }
   elseif ($Filename -like "*FUS*_1*" -or $Filename -like "*FUS_1*"){
     $Content = $Content.replace('CreateMacro("PYTHA_INIT_1", "PYTHA_INIT");','CreateMacro("PYTHA_FUS_1", "PYTHA_FUS");')
@@ -206,7 +207,7 @@ catch (System.Exception e) {}
     $Content = $Content.replace('SetWorkpieceSetupPosition(0.0000, 0.0000, 0.0, 0.0);','SetWorkpieceSetupPosition(1.5000, 1.5000, 0.0, 0.0);')
   }
   elseif ($Filename -like "*FUS*_2*"){
-      Remove-FirstMacro -FilePath $Filepath
+      $Content = Remove-FirstMacro -FilePath $Filepath
   }
 
   elseif ($Filename -like "*KUB*_1*" -or $Filename -like "*KUB_1*"){
@@ -226,7 +227,7 @@ catch (System.Exception e) {}
   }
 
   elseif ($Filename -like "*KUB*_2*"){
-    Remove-FirstMacro -FilePath $Filepath
+    $Content = Remove-FirstMacro -FilePath $Filepath
   }
 
   elseif ($Filename -like "*VW*_1*" -or $Filename -like "*VW_1*"){
@@ -247,7 +248,7 @@ catch (System.Exception e) {}
   }
 
   elseif ($Filename -like "*VW*_2*"){
-      Remove-FirstMacro -FilePath $Filepath
+      $Content = Remove-FirstMacro -FilePath $Filepath
   }
 
   else {
