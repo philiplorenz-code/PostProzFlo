@@ -98,39 +98,39 @@ function Remove-FirstMacro {
     )
 
 
-    "Date:" | Out-File -Append "./temp/log.txt"
-    (Get-Date).ToString() | Out-File -Append "./temp/log.txt"
+    "Date:" | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
+    (Get-Date).ToString() | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
 
-    "FilePath:" | Out-File -Append "./temp/log.txt"
-    $FilePath | Out-File -Append "./temp/log.txt"
+    "FilePath:" | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
+    $FilePath | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
 
-    "" | Out-File -Append "./temp/log.txt"
+    "" | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
 
     $Content = Get-Content $FilePath
-    "Initial Content:" | Out-File -Append "./temp/log.txt"
-    $Content | Out-File -Append "./temp/log.txt"
+    "Initial Content:" | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
+    $Content | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
 
-    "" | Out-File -Append "./temp/log.txt"
+    "" | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
 
     $FirstMacro = ($Content | Select-String "CreateMacro")[0]
     #$FirstMacro = $FirstMacro.ToString() -replace '\s',''
-    "FirstMacro:" | Out-File -Append "./temp/log.txt"
-    $FirstMacro | Out-File -Append "./temp/log.txt"
+    "FirstMacro:" | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
+    $FirstMacro | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
 
-    "" | Out-File -Append "./temp/log.txt"
+    "" | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
 
     $Content = $Content.Replace($FirstMacro, "")
-    "New Content After Replacement:" | Out-File -Append "./temp/log.txt"
-    $Content | Out-File -Append "./temp/log.txt"
+    "New Content After Replacement:" | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
+    $Content | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
 
-    "" | Out-File -Append "./temp/log.txt"
+    "" | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
 
     $Content | Set-Content $FilePath
 
 
     $CheckContent = Get-Content $FilePath
-    "New Content After Reimport:" | Out-File -Append "./temp/log.txt"
-    $CheckContent | Out-File -Append "./temp/log.txt"
+    "New Content After Reimport:" | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
+    $CheckContent | Out-File -Append "C:\Users\florian\AppData\Local\PYTHA25.0\temp\log.txt"
 
 
     # Replace Remaining Try Catch
